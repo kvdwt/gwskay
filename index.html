@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Well Soon, Cantikku! 🌸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- CSS UTAMA: PINK PASTEL & CUTE AESTHETIC --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFE4E1; /* Pink Pastel Background */
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #8B446B;
+            position: relative;
+        }
+
+        /* Container Kartu Utama */
+        .card {
+            background: #FFF0F5; /* Lavender Blush */
+            width: 100%;
+            max-width: 450px;
+            min-height: 580px;
+            border-radius: 40px;
+            border: 8px solid #FFB6C1;
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.6);
+            padding: 35px 25px;
+            display: none; /* Diatur lewat JavaScript */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        #page1 { display: flex; } /* Halaman pertama muncul duluan */
+
+        h1 {
+            font-family: 'Comfortaa', cursive;
+            color: #DB7093;
+            font-size: 28px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #6C757D;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Tombol Menggemaskan */
+        .btn {
+            background-color: #FFB6C1;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-family: 'Comfortaa', cursive;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            z-index: 5;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #FF69B4;
+            box-shadow: 0 12px 25px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Container Ilustrasi */
+        .illustration-box {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 1. Maskot Beruang Lucu */
+        .bear {
+            width: 120px;
+            height: 100px;
+            background: #f5ebe0;
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            box-shadow: 0 8px 0 #e3d5ca;
+        }
+        .bear-ear {
+            width: 35px;
+            height: 35px;
+            background: #f5ebe0;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+        }
+        .bear-ear.left { left: 5px; }
+        .bear-ear.right { right: 5px; }
+        .bear-ear::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffb6c1;
+            border-radius: 50%;
+            top: 7px; left: 7px;
+        }
+        .bear-eye {
+            width: 10px;
+            height: 10px;
+            background: #4a3e3d;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        .bear-eye.left { left: 30px; }
+        .bear-eye.right { right: 30px; }
+        .bear-blush {
+            width: 20px;
+            height: 10px;
+            background: rgba(255, 105, 180, 0.4);
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+        }
+        .bear-blush.left { left: 15px; }
+        .bear-blush.right { right: 15px; }
+        .bear-snout {
+            width: 30px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 45px; left: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bear-nose {
+            width: 10px;
+            height: 7px;
+            background: #4a3e3d;
+            border-radius: 40%;
+        }
+
+        /* 2. BUKET BUNGA FULL BESAR DAN PADAT (DI TENGAH) */
+        .bouquet-full {
+            width: 180px;
+            height: 220px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Kertas Pembungkus Bawah */
+        .bouquet-wrap {
+            position: absolute;
+            bottom: 10px;
+            width: 110px;
+            height: 120px;
+            background: #ffcad4;
+            clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%);
+            border-radius: 0 0 25px 25px;
+            z-index: 2;
+        }
+        /* Lipatan Kertas Luar Kiri Kanan (Efek Full) */
+        .bouquet-wrap-left {
+            position: absolute;
+            bottom: 30px; left: 15px;
+            width: 70px; height: 110px;
+            background: #ffb6c1;
+            transform: rotate(-25deg);
+            border-radius: 20px 0 0 20px;
+            z-index: 2;
+        }
+        .bouquet-wrap-right {
+            position: absolute;
+            bottom: 30px; right: 15px;
+            width: 70px; height: 110px;
+            background: #ffb6c1;
+            transform: rotate(25deg);
+            border-radius: 0 20px 20px 0;
+            z-index: 2;
+        }
+        /* Pita Merah Muda */
+        .bouquet-ribbon {
+            position: absolute;
+            bottom: 35px;
+            width: 35px;
+            height: 14px;
+            background: #ff477e;
+            border-radius: 10px;
+            z-index: 4;
+        }
+        .bouquet-ribbon::before, .bouquet-ribbon::after {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            background: #ff477e;
+            border-radius: 50%;
+            top: -5px;
+        }
+        .bouquet-ribbon::before { left: -10px; }
+        .bouquet-ribbon::after { right: -10px; }
+        /* Kumpulan Bunga Padat & Besar */
+        .flower-bed {
+            position: absolute;
+            top: 15px;
+            width: 170px;
+            height: 110px;
+            z-index: 3;
+        }
+        .fl-blooms {
+            position: absolute;
+            width: 55px; height: 55px;
+            background: #ff70a6;
+            border-radius: 50%;
+            top: 25px; left: 55px;
+            box-shadow: 
+                -40px -10px 0 5px #ff97b7,  /* Kiri Atas */
+                40px -10px 0 5px #ff85a1,   /* Kanan Atas */
+                -45px 25px 0 2px #ffb5a7,   /* Kiri Bawah */
+                45px 25px 0 2px #ffb5a7,    /* Kanan Bawah */
+                0px -25px 0 8px #f4acb7,    /* Tengah Atas Utama */
+                -25px 15px 0 4px #ff70a6,   /* Pengisi Selingan */
+                25px 15px 0 4px #ff70a6;
+        }
+        /* Detail Inti Putik Bunga Kuning Imut */
+        .fl-blooms::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 26px;
+            top: 12px; left: 14px;
+            filter: drop-shadow(-35px -12px 0 #ffe5ec) 
+                    drop-shadow(35px -12px 0 #ffe5ec)
+                    drop-shadow(0px -22px 0 #fff);
+        }
+
+        /* 3. BOTOL VITAMIN ASLI */
+        .vitamin-bottle {
+            width: 95px;
+            height: 135px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #ffb6c1;
+            border-radius: 22px 22px 15px 15px;
+            position: relative;
+            box-shadow: inset -10px 0 0 rgba(255, 182, 193, 0.2);
+        }
+        .bottle-cap {
+            width: 64px;
+            height: 18px;
+            background: #ff69b4;
+            border-radius: 8px 8px 3px 3px;
+            position: absolute;
+            top: -20px; left: 11px;
+        }
+        .label {
+            width: 100%;
+            height: 45px;
+            background: #ffcad4;
+            position: absolute;
+            top: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: white;
+            font-family: 'Comfortaa', cursive;
+        }
+        .capsules-inside {
+            position: absolute;
+            bottom: 12px; left: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .cap-pill {
+            width: 16px;
+            height: 32px;
+            background: #ff70a6;
+            border-radius: 10px;
+            transform: rotate(15deg);
+            border-bottom: 14px solid #ffb5a7;
+        }
+
+        /* --- KEYFRAMES & EFFECT ANIMATION --- */
+        .floating { animation: float 2.5s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes popUp {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: flyUp 4s linear forwards;
+            font-size: 24px;
+            z-index: 10;
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="page1">
+        <div class="illustration-box floating">
+            <div class="bear">
+                <div class="bear-ear left"></div>
+                <div class="bear-ear right"></div>
+                <div class="bear-eye left"></div>
+                <div class="bear-eye right"></div>
+                <div class="bear-blush left"></div>
+                <div class="bear-blush right"></div>
+                <div class="bear-snout"><div class="bear-nose"></div></div>
+            </div>
+        </div>
+        <h1>Halo Cantikku... 🌸</h1>
+        <p>Aku punya pesan singkat dan sesuatu yang spesial khusus buat nemenin kamu yang lagi sakit. Dibuka yuk? 👉👈</p>
+        <button class="btn" onclick="nextPage('page1', 'page2')">Buka Surat 💌</button>
+    </div>
+
+    <div class="card" id="page2">
+        <h1 style="font-size: 24px;">Pesan Spesial... 🥺❤️</h1>
+        <p style="background: white; padding: 22px; border-radius: 25px; border: 3px dashed #FFB6C1; text-align: left; font-size: 15px; color: #DB7093; line-height: 1.7; margin-bottom: 20px;">
+            get well soon ya cantikku, jangan lupa minum obat yaa, terus makan yang banyak biar badannya fit lagi. aku doain kamu di sini ya biar cepet sembuh jujur aku ga suka kalo kamu lagi sakit kayak gini. cepet sembuh ya adek kecil ku, good night cantikku, mimpi indahh yaa sayangg, i love uu
+        </p>
+        <button class="btn" onclick="nextPage('page2', 'page3')">Lihat Kejutan 🎁</button>
+    </div>
+
+    <div class="card" id="page3">
+        <div class="illustration-box floating" style="font-size: 90px;">🎁</div>
+        <h1>Kado Pertama Buat Kamu!</h1>
+        <p>Biar hari ini kamu tetep senyum manis walaupun lagi lemes, aku udah siapin kado istimewa!</p>
+        <button class="btn" onclick="nextPage('page3', 'page4')">Ambil Buket Kamu 🌷</button>
+    </div>
+
+    <div class="card" id="page4">
+        <div class="illustration-box floating">
+            <div class="bouquet-full">
+                <div class="flower-bed"><div class="fl-blooms"></div></div>
+                <div class="bouquet-wrap-left"></div>
+                <div class="bouquet-wrap-right"></div>
+                <div class="bouquet-wrap"></div>
+                <div class="bouquet-ribbon"></div>
+            </div>
+        </div>
+        <h1>Tadaaa! 💐✨</h1>
+        <p style="font-weight: bold; color: #DB7093; font-size: 19px; margin-bottom: 10px;">Buket Bunga Cantik Khusus Buat Kamu!</p>
+        <p>Bunganya melimpah dan gak akan pernah layu, sama kayak rasa sayang aku ke kamu. Nah, abis ini ada hal yang gak kalah penting nih...</p>
+        <button class="btn" onclick="nextPage('page4', 'page5')">Ambil Vitamin Kamu 💊</button>
+    </div>
+
+    <div class="card" id="page5">
+        <div class="illustration-box floating">
+            <div class="vitamin-bottle">
+                <div class="bottle-cap"></div>
+                <div class="label">VIT</div>
+                <div class="capsules-inside">
+                    <div class="cap-pill"></div>
+                    <div class="cap-pill" style="animation-delay: 0.3s; background: #ffb5a7; border-bottom-color:#ff70a6;"></div>
+                    <div class="cap-pill" style="animation-delay: 0.6s;"></div>
+                </div>
+            </div>
+        </div>
+        <h1>Vitamin Booster! 💊✨</h1>
+        <p style="font-weight: bold; color: #DB7093; font-size: 19px; margin-bottom: 10px;">Biar cepet sembuh yaa sayang!</p>
+        <p>Vitamin online ini udah diracik khusus pakai doa dan pelukan hangat paling tulus dari aku. Wajib dihabisin ya biar badannya langsung fit lagi! 🧸</p>
+        <button class="btn" onclick="nextPage('page5', 'page6')">Terakhir... ❤️</button>
+    </div>
+
+    <div class="card" id="page6">
+        <div class="illustration-box floating">
+            <div class="bear" style="background: #f5ebe0;">
+                <div class="bear-ear left"></div>
+                <div class="bear-ear right"></div>
+                <div style="width:12px; height:6px; border:3px solid #4a3e3d; border-top:0; border-radius:0 0 10px 10px; position:absolute; top:42px; left:28px;"></div>
+                <div style="width:12px; height:6px; border:3px solid #4a3e3d; border-top:0; border-radius:0 0 10px 10px; position:absolute; top:42px; right:28px;"></div>
+                <div class="bear-blush left"></div>
+                <div class="bear-blush right"></div>
+                <div class="bear-snout"><div class="bear-nose"></div></div>
+            </div>
+        </div>
+        <h1>Good Night! ✨</h1>
+        <p style="font-size: 20px; font-weight: bold; color: #DB7093; margin-bottom: 10px;">Mimpi indah ya sayangg...</p>
+        <p>Sekarang matikan HP-nya ya cantikku, langsung bobo nyenyak. Semoga besok pagi pas bangun tidurnya badannya udah beneran sehat walafiat. Amin!</p>
+        <h2 style="color: #FF1493; font-family: 'Comfortaa', cursive; font-size: 36px; margin-top: 15px; text-shadow: 0 4px 10px rgba(255,20,147,0.2);">I Love Uuu! ❤️</h2>
+    </div>
+
+    <script>
+        // Fungsi Pindah Halaman Interaktif (Dipencet Tombol)
+        function nextPage(currentId, nextId) {
+            document.getElementById(currentId).style.display = 'none';
+            document.getElementById(nextId).style.display = 'flex';
+            
+            // Efek ledakan partikel cinta setiap klik tombol halaman baru
+            for(let i = 0; i < 15; i++) {
+                setTimeout(spawnHeart, i * 80);
+            }
+        }
+
+        // Fungsi Generate Efek Hati Beterbangan
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            const models = ['💖', '💕', '🌸', '✨', '💗'];
+            heart.innerHTML = models[Math.floor(Math.random() * models.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Trigger rintik hati halus secara otomatis di background utama
+        setInterval(spawnHeart, 900);
+    </script>
+</body>
+</html>
